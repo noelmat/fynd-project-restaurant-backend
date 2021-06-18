@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const bcrypt = require('bcrypt');
 
 const restaurantUserSchema = new mongoose.Schema({
     name: {
@@ -10,8 +11,13 @@ const restaurantUserSchema = new mongoose.Schema({
         required: true, 
         unique: true
     },
+    password: {
+        type: String,
+        required: true
+    },
     role: {
-        type: mongoose.Schema.ObjectId,
+        type: String,
+        enum: ['admin','employee'],
         required: true
     }   
 })
