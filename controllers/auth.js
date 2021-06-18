@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken');
 const mongoose = require('mongoose');
 const RestaurantUser = mongoose.model('RestaurantUser');
 
-const postUser = async (req, res, next) => {
+const register = async (req, res, next) => {
     const userDetails = req.body;
 
     if(!userDetails || Object.keys(userDetails).length === 0){
@@ -77,6 +77,6 @@ const login = async (req, res, next) => {
 }
 
 module.exports = {
-    postUser, login
+    register, login
 }
 
