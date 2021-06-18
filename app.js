@@ -2,7 +2,7 @@ require('./data/init');
 
 const express = require('express');
 const userManagement = require('./routes/auth');
-
+const restaurantRouter = require('./routes/restaurant');
 const { pageNotFoundHandler, errorHandler } = require('./middlewares/error-handlers');
 
 
@@ -12,6 +12,8 @@ app.use(express.json());
 app.use(express.urlencoded( { extended: false }));
 
 app.use('/auth/usermanagement', userManagement);
+app.use('/restaurant', restaurantRouter);
+
 
 app.use(pageNotFoundHandler);
 app.use(errorHandler);

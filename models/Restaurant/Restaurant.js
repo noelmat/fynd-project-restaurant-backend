@@ -22,6 +22,7 @@ const restaurantSchema = new mongoose.Schema({
     },
     address: {
         type: mongoose.Schema.Types.ObjectId,
+        required: true
     },
     openTime: {
         type: timeSchema,

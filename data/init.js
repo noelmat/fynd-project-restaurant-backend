@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 
 
+require('../models/Address');
 require('../models/Menu/MenuItem');
 require('../models/Menu/Menu');
 require('../models/Restaurant/Restaurant');
