@@ -2,6 +2,7 @@ require('./data/init');
 
 const express = require('express');
 
+const { pageNotFoundHandler, errorHandler } = require('./middlewares/error-handlers');
 
 
 const app = express();
@@ -10,6 +11,8 @@ app.use(express.json());
 app.use(express.urlencoded( { extended: false }));
 
 
+app.use(pageNotFoundHandler);
+app.use(errorHandler);
 
 const PORT = 3000;
 
