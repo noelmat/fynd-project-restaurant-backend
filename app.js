@@ -4,12 +4,13 @@ const express = require('express');
 const userManagement = require('./routes/auth');
 const restaurantRouter = require('./routes/restaurant');
 const { pageNotFoundHandler, errorHandler } = require('./middlewares/error-handlers');
-
+const cors = require('cors');
 
 const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded( { extended: false }));
+app.use(cors());
 
 app.use('/auth/usermanagement', userManagement);
 app.use('/restaurant', restaurantRouter);
