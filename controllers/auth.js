@@ -67,7 +67,9 @@ const login = async (req, res, next) => {
                 }
                 res.json({
                     name: user.name,
-                    token: token
+                    token: token,
+                    username: user.username,
+                    role: user.role
                 });
             });
         });
