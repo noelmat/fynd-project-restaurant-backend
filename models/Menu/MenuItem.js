@@ -25,8 +25,13 @@ const menuItemSchema = new mongoose.Schema({
         min: 0,
         max: 5
     },
-    outofstock: {
+    inStock: {
         type: Boolean,
+        required: false,
+        default: true
+    },
+    special: {
+        type: Boolean, 
         required: false,
         default: false
     }
