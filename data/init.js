@@ -7,6 +7,7 @@ require('../models/Menu/Menu');
 require('../models/Restaurant/Restaurant');
 require('../models/UserManagement/RestaurantUser');
 require('../models/UserManagement/UserRole');
+require('../models/CustomerManagement/CustomerUser');
 
 
 
