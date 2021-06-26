@@ -8,6 +8,9 @@ require('../models/Restaurant/Restaurant');
 require('../models/UserManagement/RestaurantUser');
 require('../models/UserManagement/UserRole');
 require('../models/CustomerManagement/CustomerUser');
+require('../models/CustomerManagement/Cart');
+require('../models/CustomerManagement/CartItem');
+require('../models/CustomerManagement/Session');
 
 
 
