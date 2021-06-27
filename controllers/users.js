@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const RestaurantUser = mongoose.model('RestaurantUser');
 const getAllUsers = async (req, res, next) =>{
     try {
-        const users = await RestaurantUser.find().select({name: 1, role: 1, username: 1});
+        const users = await RestaurantUser.find().select('-password');
         res.status(200).json(users);
     } catch(error){
         next(error);
@@ -19,7 +19,7 @@ const patchUser = async (req, res, next) => {
     }
     if(userDetails.password === undefined){
         try{
-            const updatedUser = await RestaurantUser.updateOne({_id: id}, userDetails)
+            const updatedUser = await RestaurantUser.findByIdAndUpdate( id, userDetails).select('-password');
             if(Object.keys(updatedUser).length === 0){
                 const error = new Error('user not found');
                 error.status = 404;
