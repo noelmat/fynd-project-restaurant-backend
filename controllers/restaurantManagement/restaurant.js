@@ -36,7 +36,15 @@ const registerRestaurant = async (req, res, next) => {
     }
     
 }
-
+const getRestaurant = async (req, res, next)=>{
+    try{
+        const restaurant = await Restaurant.findOne().populate('address');
+        res.status(200).json(restaurant);
+    }catch(error){
+        next(error);
+    }
+}
 module.exports = {
-    registerRestaurant
+    registerRestaurant,
+    getRestaurant
 }
