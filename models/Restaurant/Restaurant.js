@@ -7,6 +7,7 @@ const restaurantSchema = new mongoose.Schema({
     },
     address: {
         type: mongoose.Schema.Types.ObjectId,
+        ref: 'Address',
         required: true
     },
     openTime: {
