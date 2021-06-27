@@ -1,11 +1,16 @@
 const mongoose = require('mongoose');
 
 
+require('../models/Address');
 require('../models/Menu/MenuItem');
 require('../models/Menu/Menu');
 require('../models/Restaurant/Restaurant');
 require('../models/UserManagement/RestaurantUser');
 require('../models/UserManagement/UserRole');
+require('../models/CustomerManagement/CustomerUser');
+require('../models/CustomerManagement/Cart');
+require('../models/CustomerManagement/CartItem');
+require('../models/CustomerManagement/Session');
 
 
 

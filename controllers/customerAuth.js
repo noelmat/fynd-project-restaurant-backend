@@ -1,84 +1,90 @@
-const jwt = require('jsonwebtoken');
 const mongoose = require('mongoose');
-const RestaurantUser = mongoose.model('RestaurantUser');
+const jwt = require('jsonwebtoken');
 
-const register = async (req, res, next) => {
+const CustomerUser = mongoose.model('CustomerUser');
+const Cart = mongoose.model('Cart');
+
+const register = async (req, res, next) =>{
     const userDetails = req.body;
 
     if(!userDetails || Object.keys(userDetails).length === 0){
-        const error = new Error('User Details invalid');
+        const error = new Error('User details invalid');
         error.status = 400;
         return next(error);
     }
     try{
-        await RestaurantUser.create(userDetails)
-        res.status(204).send('User Created');
-    }catch( error ){
-        error.status = 400
-        next(error);
+        const cart = await Cart.create({});
+        userDetails['cartId'] = cart._id;
+        try{
+            await CustomerUser.create(userDetails);
+            res.status(204).send('Customer Created');
+        }catch(error){
+            await Cart.findByIdAndDelete(cart);
+            throw error;
+        }        
+        
+    }catch(error){
+        return next(error);
     }
 }
 
-const login = async (req, res, next) => {
+const login = async (req, res, next) =>{
     const creds = req.body;
 
-    if (!creds){
+    if(!creds || Object.keys(creds).length === 0){
         const error = new Error('Login Details not received');
         error.status = 400;
         return next( error ); 
     }
-
-    if (!creds.username || !creds.password){
+    if (!creds.email || !creds.password){
         const error = new Error('Login Details not received');
         error.status = 400;
         return next( error );
     } 
 
     try{
-        const user = await RestaurantUser.findOne({ username: creds.username });
+        const user = await CustomerUser.findOne({email: creds.email});
         if(!user){
             const error = new Error('No matching credentials');
             error.status = 404;
             return next(error);
         }
 
-        user.checkPassword( creds.password, (err, isMatch)=>{
-            if (err){
+        user.checkPassword(creds.password, (err, isMatch)=> {
+            if(err){
                 const error = new Error('No matching credentials');
                 error.status = 404;
-                return next(error);
+                return next(error);    
             }
-
-            if (!isMatch){
+            if(!isMatch){
                 const error = new Error('No matching credentials');
                 error.status = 404;
-                return next(error);
+                return next(error);    
             }
 
             const claims = {
                 name: user.name,
-                role: user.role
+                email: user.email,
             };
 
-            jwt.sign(claims, 'SECRET', (err, token)=> {
+            jwt.sign(claims, 'CustomerSecret', (err,token)=> {
                 if(err){
                     err.status = 500;
-                    return next( err );
+                    return next(err);
                 }
                 res.json({
                     name: user.name,
-                    token: token,
-                    username: user.username,
-                    role: user.role
+                    token,
+                    email: user.email
                 });
             });
         });
-    }catch( error) {
+    }catch(error){
         return next(error);
     }
+
 }
 
 module.exports = {
     register, login
 }
-
