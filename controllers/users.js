@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const RestaurantUser = mongoose.model('RestaurantUser');
 const getAllUsers = async (req, res, next) =>{
     try {
-        const users = await RestaurantUser.find();
+        const users = await RestaurantUser.find().select({name: 1, role: 1, username: 1});
         res.status(200).json(users);
     } catch(error){
         next(error);
