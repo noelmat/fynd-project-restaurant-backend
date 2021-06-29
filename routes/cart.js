@@ -1,6 +1,6 @@
 const express = require('express');
 const {getCart, updateCart} = require('../controllers/cart');
-const { checkOrGetCookie } = require('../middlewares/session');
+// const { checkOrGetCookie } = require('../middlewares/session');
 
 const router = express.Router();
 

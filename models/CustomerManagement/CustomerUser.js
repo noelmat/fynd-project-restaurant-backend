@@ -23,6 +23,10 @@ const customerUserSchema = new mongoose.Schema({
     address: {
         type: [{type: mongoose.Schema.Types.ObjectId, ref: 'Address'}]
     },
+    orders: {
+        type: [{type: mongoose.Schema.Types.ObjectId, ref: 'Orders'}],
+        default: []
+    }
     
 })
 const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;

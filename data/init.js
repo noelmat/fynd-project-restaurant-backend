@@ -11,10 +11,12 @@ require('../models/CustomerManagement/CustomerUser');
 require('../models/CustomerManagement/Cart');
 require('../models/CustomerManagement/CartItem');
 require('../models/CustomerManagement/Session');
+require('../models/OrderManagement/Order');
+require('../models/OrderManagement/OrderItem');
 
+const {NODE_ENV,DB_HOST,DB_NAME,DB_PORT } = process.env;
 
-
-const uri = "mongodb://localhost:27017/restaurantDB";
+const uri = NODE_ENV === 'development' ? `mongodb://${DB_HOST}:${DB_PORT}/${DB_NAME}`: '';
 
 mongoose.set( 'useFindAndModify' , false );
 mongoose.set( 'returnOriginal' , false );

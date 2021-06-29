@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken');
 
 const CustomerUser = mongoose.model('CustomerUser');
 const Cart = mongoose.model('Cart');
-
+const Address = mongoose.model('Address');
 const register = async (req, res, next) =>{
     const userDetails = req.body;
 
@@ -13,13 +13,15 @@ const register = async (req, res, next) =>{
         return next(error);
     }
     try{
-        const cart = await Cart.create({});
-        userDetails['cartId'] = cart._id;
+
+        const address = await Address.create(userDetails.address);
+        userDetails.address = [address._id];
+        // const cart = await Cart.create({});
         try{
             await CustomerUser.create(userDetails);
             res.status(204).send('Customer Created');
         }catch(error){
-            await Cart.findByIdAndDelete(cart);
+            // await Cart.findByIdAndDelete(cart);
             throw error;
         }        
         
@@ -67,7 +69,7 @@ const login = async (req, res, next) =>{
                 email: user.email,
             };
 
-            jwt.sign(claims, 'CustomerSecret', (err,token)=> {
+            jwt.sign(claims, process.env.JWT_CUSTOMER_SECRET, (err,token)=> {
                 if(err){
                     err.status = 500;
                     return next(err);

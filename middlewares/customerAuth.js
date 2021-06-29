@@ -9,7 +9,7 @@ const authenticate = (req, res, next) => {
         return next(error);
     }
 
-    jwt.verify(token, process.env.JWT_SERVER_SECRET, (err, claims) => {
+    jwt.verify(token, process.env.JWT_CUSTOMER_SECRET, (err, claims) => {
         if (err) {
             const error = new Error('Provide Valid Authentication');
             error.status = 401;
