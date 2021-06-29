@@ -1,0 +1,3 @@
+mongoimport --uri="mongodb+srv://restaurantAdmin:KYxxSdNaU7PgNT0w@cluster0.txoh0.mongodb.net/restaurantsDB?ssl=true&authSource=admin" --collection=addresses --drop --file="seed/addresses.json" --jsonArray
+mongoimport --uri="mongodb+srv://restaurantAdmin:KYxxSdNaU7PgNT0w@cluster0.txoh0.mongodb.net/restaurantsDB?ssl=true&authSource=admin" --collection=restaurants --drop --file="seed/restaurants.json" --jsonArray
+mongoimport --uri="mongodb+srv://restaurantAdmin:KYxxSdNaU7PgNT0w@cluster0.txoh0.mongodb.net/restaurantsDB?ssl=true&authSource=admin" --collection=restaurantusers --drop --file="seed/restaurantusers.json" --jsonArray

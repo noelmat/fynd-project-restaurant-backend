@@ -99,9 +99,9 @@ const activeOrders = async (req, res,next)=>{
     
         }
         global.ordermanagement.onSave.addListener('event:updated', listener);
-        console.log('client Listening')
+        // console.log('client Listening')
         req.on('close', ()=> {
-            console.log('client Dropped');
+            // console.log('client Dropped');
             global.ordermanagement.onSave.removeListener('event:updated', listener);
             res.end();
         })

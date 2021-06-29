@@ -4,7 +4,7 @@
   "description": "Express Mongoose Server for Restaurant App",
   "main": "app.js",
   "scripts": {
-    "start": "nodemon .",
+    "start": "node .",
     "generate:data": "node ./data/hash-passwords.js",
     "seed:local": "node data/seed.js"
   },
