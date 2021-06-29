@@ -4,7 +4,7 @@ const Menu = mongoose.model('Menu');
 
 const getMenus = async (req, res, next) => {
     try{
-        const menus = await Menu.find();
+        const menus = await Menu.find().populate('menuItems');
         res.status(200).json(menus);
     }catch( error ){
         next(error);

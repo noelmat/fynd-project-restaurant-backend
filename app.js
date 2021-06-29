@@ -17,7 +17,8 @@ const cookieParser = require('cookie-parser');
 
 const app = express();
 if(process.env.NODE_ENV === 'development'){
-    app.use(cors({ credentials: true}));
+    console.log("DEV MODE");
+    app.use(cors({origin:"http://localhost:8080", credentials: true}));
 }
 
 
