@@ -1,0 +1,12 @@
+[
+    {
+        "_id" : {
+            "$oid": "60cca63da0ca5e3614f9577d"
+        },
+        "addressLine1" : "102 , Iflr,colesrd,",
+        "addressLine2" : "frazertown,blr, Frazer Town",
+        "city" : " Bangalore",
+        "landmark" : "Frazer Town",
+        "primaryContact" : "022-25561273"
+    }
+]

@@ -1,0 +1,20 @@
+[
+    {
+        "_id" : {
+            "$oid": "60cca63da0ca5e3614f9577f"
+        },
+        "status" : "open",
+        "name" : "Restaurant",
+        "openTime" : {
+            "hours" : 9,
+            "minutes" : 30
+        },
+        "closeTime" : {
+            "hours" : 23,
+            "minutes" : 0
+        },
+        "address" : {
+            "$oid": "60cca63da0ca5e3614f9577d"
+        }
+    }
+]
