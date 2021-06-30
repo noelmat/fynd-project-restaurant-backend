@@ -102,3 +102,7 @@ dist
 
 # TernJS port file
 .tern-port
+.env.development
+.env.production
+data/hash-passwords.js
+data/seed.production.sh

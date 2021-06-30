@@ -93,15 +93,15 @@ const activeOrders = async (req, res,next)=>{
         res.write(`data: ${JSON.stringify(activeOrders)}\n\n`);
 
         const listener = async (order)=>{
-            console.log('updated');
+            // console.log('updated');
             const updatedOrder = await Order.findById(order._id).populate({path:"items", populate: {path: "itemId"}});
             res.write( `data: ${JSON.stringify(updatedOrder)}\n\n`)
     
         }
         global.ordermanagement.onSave.addListener('event:updated', listener);
-        console.log('client Listening')
+        // console.log('client Listening')
         req.on('close', ()=> {
-            console.log('client Dropped');
+            // console.log('client Dropped');
             global.ordermanagement.onSave.removeListener('event:updated', listener);
             res.end();
         })
